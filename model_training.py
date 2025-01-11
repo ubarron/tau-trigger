@@ -87,10 +87,8 @@ class ResNet(models.Model):
 
         # Number of filters in different convolutional layers
         filter_block1 = [8, 8]
-        filter_block2 = [16, 16]
 
         self.layer1 = self.build_cellblock(filter_block1, layers_dims[0])
-        #         self.layer2 = self.build_cellblock(filter_block2, layers_dims[1], stride=2)
 
         self.avgpool = GlobalAveragePooling2D()
         self.fc = Dense(nb_classes, activation='softmax')
@@ -99,7 +97,6 @@ class ResNet(models.Model):
         x = self.stem(inputs)
 
         x = self.layer1(x)
-        #         x=self.layer2(x)
 
         x = self.avgpool(x)
         x = self.fc(x)
